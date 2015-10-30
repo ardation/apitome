@@ -1,17 +1,15 @@
 class Apitome::DocsController < ActionController::Base
   layout Apitome.configuration.layout
 
-  helper_method *[
-    :resources,
-    :example,
-    :formatted_body,
-    :param_headers,
-    :param_extras,
-    :formatted_readme,
-    :set_example,
-    :id_for,
-    :rendered_markdown
-  ]
+  helper_method :resources,
+                :example,
+                :formatted_body,
+                :param_headers,
+                :param_extras,
+                :formatted_readme,
+                :set_example,
+                :id_for,
+                :rendered_markdown
 
   def index
   end
