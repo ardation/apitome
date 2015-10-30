@@ -24,7 +24,7 @@ module Apitome
     @@js_override  = nil
     @@readme       = "../api.md"
     @@single_page  = true
-    @@url_formatter = -> (str) { str.gsub(/\.json$/, '').underscore.gsub(/[^0-9a-z]+/i, '-') }
+    @@url_formatter = -> (str) { str.gsub(/\.json$/, "").underscore.gsub(/[^0-9a-z]+/i, "-") }
 
     def self.root=(path)
       @@root = Pathname.new(path.to_s) if path.present?

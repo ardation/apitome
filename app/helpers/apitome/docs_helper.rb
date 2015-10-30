@@ -1,10 +1,10 @@
 module Apitome::DocsHelper
   def format_scope(scope)
-    Array(scope).each_with_index.map do |scope, index|
+    Array(scope).each_with_index.map do |value, index|
       if index == 0
-        scope
+        value
       else
-        "[#{scope}]"
+        "[#{value}]"
       end
     end.join
   end
