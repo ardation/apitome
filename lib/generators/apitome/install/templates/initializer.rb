@@ -12,6 +12,9 @@ Apitome.setup do |config|
   # configurable here.
   config.doc_path = "doc/api"
 
+  # This is where Apitome will load any static pages you have to add to your documentation
+  config.doc_path = "doc/static"
+
   # The title of the documentation -- If your project has a name, you'll want to put it here.
   config.title = "Apitome Documentation"
 

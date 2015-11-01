@@ -11,12 +11,14 @@ module Apitome
       :js_override,
       :readme,
       :single_page,
-      :url_formatter
+      :url_formatter,
+      :static_path
     ]
 
     @@mount_at     = "/api/docs"
     @@root         = nil # will default to Rails.root if left unset
     @@doc_path     = "doc/api"
+    @@static_path     = "doc/static"
     @@title        = "Apitome Documentation"
     @@layout       = "apitome/application"
     @@code_theme   = "default"
