@@ -8,23 +8,36 @@
       <% end %>
     </li>
   <% end %>
-  <% resources.each do |resource| %>
-    <li>
-      <% if Apitome.configuration.single_page %>
-        <a href="#<%= id_for(resource['examples'].first['link']) %>"><%= resource['name'] %></a>
-        <ul class="nav">
-          <% resource['examples'].each do |example| %>
-            <li><%= link_to example['description'], "##{id_for(example['link'])}" %></li>
-          <% end %>
-        </ul>
-      <% else %>
-        <li><%= link_to resource['name'], "#{Apitome.configuration.mount_at}/#{resource['examples'].first['link'].gsub(/\.json$/, '')}" %></li>
-        <ul class="nav">
-          <% resource['examples'].each do |example| %>
-            <li><%= link_to example['description'], "#{Apitome.configuration.mount_at}/#{example['link'].gsub(/\.json$/, '')}" %></li>
-          <% end %>
-        </ul>
+  <% topics.each do |topic, value| %>
+    <li><a><%= topic %></a></li>
+    <ul class="nav">
+      <% value[:files].each do |page| %>
+        <li><%= link_to page, "#{Apitome.configuration.mount_at}/pages/#{topic}/#{page}" %></li>
       <% end %>
-    </li>
+    </ul>
   <% end %>
+  <li>
+    <a>API Reference</a>
+    <ul class="nav">
+      <% resources.each do |resource| %>
+        <li>
+          <% if Apitome.configuration.single_page %>
+            <a href="#<%= id_for(resource['examples'].first['link']) %>"><%= resource['name'] %></a>
+            <ul class="nav">
+              <% resource['examples'].each do |example| %>
+                <li><%= link_to example['description'], "##{id_for(example['link'])}" %></li>
+              <% end %>
+            </ul>
+          <% else %>
+            <%= link_to resource['name'], "#{Apitome.configuration.mount_at}/#{resource['examples'].first['link'].gsub(/\.json$/, '')}" %>
+            <!-- <ul class="nav">
+              <% resource['examples'].each do |example| %>
+                <li><%= link_to example['description'], "#{Apitome.configuration.mount_at}/#{example['link'].gsub(/\.json$/, '')}" %></li>
+              <% end %>
+            </ul> -->
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  </li>
 </ul>

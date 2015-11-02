@@ -2,6 +2,7 @@ class Apitome::BaseController < ActionController::Base
   layout Apitome.configuration.layout
 
   helper_method :resources,
+                :topics,
                 :example,
                 :formatted_body,
                 :param_headers,
@@ -21,6 +22,27 @@ class Apitome::BaseController < ActionController::Base
 
   def resources
     @resources ||= JSON.parse(file_for("index.json"))["resources"]
+  end
+
+  def static
+    @static ||= directories
+  end
+
+  def topics
+    @topics ||= static[:folders]["pages"][:folders]
+  end
+
+  def static_path
+    Apitome.configuration.root.join(Apitome.configuration.static_path)
+  end
+
+  def directories(path = static_path)
+    returnable = { folders: {}, files: [] }
+    Dir.entries(path).reject { |entry| entry =~ /^\.{1,2}$/ }.each do |entry|
+      next returnable[:folders][entry] = directories(path.join entry) if File.directory?(path.join entry)
+      returnable[:files].push entry.gsub(".md", "")
+    end
+    returnable
   end
 
   def example
