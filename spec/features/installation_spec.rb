@@ -14,6 +14,10 @@ feature "Installation" do
     end
   end
 
+  after :each do
+    `rm -rf tmp`
+  end
+
   it "installs the base files" do
     Dir.chdir "tmp/dummy" do
       expect(`bundle exec rails generate apitome:install`).to include(<<-OUTPUT.strip_heredoc)
