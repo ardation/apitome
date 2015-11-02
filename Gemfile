@@ -1,4 +1,3 @@
-ruby "2.2.0"
 source "https://rubygems.org"
 
 gemspec
@@ -11,7 +10,15 @@ group :development, :test do
   gem "rspec-rails"
   gem "capybara"
   gem "aruba"
-  gem "selenium-webdriver"
+  gem "capybara-webkit"
+  gem "launchy"
+  gem "capybara-screenshot"
+  gem "pry"
+
+  # automation
+  gem "guard-bundler"
+  gem "guard-rspec"
+  gem "guard-rubocop"
 
   # io services
   gem "rubocop", require: false

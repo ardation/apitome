@@ -1,21 +1,21 @@
 require File.expand_path("../boot", __FILE__)
 
+require "rails"
+# Pick the frameworks you want:
+require "active_model/railtie"
+require "active_job/railtie"
+# require "active_record/railtie"
 require "action_controller/railtie"
+require "action_mailer/railtie"
+require "action_view/railtie"
 require "sprockets/railtie"
-begin
-  require "haml-rails"
-  require "coffee-rails"
-  require "sass-rails"
-  require "jquery-rails"
-rescue LoadError
-  # intentionally do nothing here, let the failure happen later.
-end
+require "rails/test_unit/railtie"
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-module Dummy
+module MyApp
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
@@ -28,10 +28,5 @@ module Dummy
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
-
-    # Change our relative root url to show that if relative paths are setup properly, teaspoon will
-    # continue to work and load the proper urls.
-    config.relative_url_root = "/relative"
-    config.assets.prefix = "/relative/assets" # this must be set for any asset paths to be correct!
   end
 end
